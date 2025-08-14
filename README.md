@@ -1,16 +1,29 @@
 # weatherapp
 
-Aplikasi fetch API cuaca.
+Aplikasi untuk fetch API cuaca.
 
-## Getting Started
+## Struktur Folder Project
 
-This project is a starting point for a Flutter application.
+- **config**  
+  Tempat menyimpan file konfigurasi seperti routes, tema aplikasi, atau constant yang dipakai di banyak tempat. Mudah kalau mau ganti settingan, tinggal ke sini.
 
-A few resources to get you started if this is your first Flutter project:
+- **core**  
+  Bagian inti dari project. Berisi response wrapper dan utils yang dipakai di seluruh aplikasi.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- **models**  
+  Semua class data atau objek. Hanya merepresentasikan data, tanpa logic yang kompleks.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- **services**  
+  Bagian yang berinteraksi dengan sumber eksternal, seperti API.
+
+- **usecases**  
+  Berisi Business Logic murni, misalnya “Get Weather” atau “Get Forecast”. Tidak peduli tentang UI, fokus pada aturan bisnis.
+
+- **viewmodels**  
+  Penghubung antara UI dan usecases. Menangani state, event dari user, dan update UI.
+
+- **views**  
+  Semua tampilan UI, seperti page, screen, atau widget kompleks (`login_screen`, `weather_screen`, dll).
+
+- **main.dart**  
+  Titik masuk aplikasi. Biasanya mendefinisikan `runApp`, `MaterialApp`, routing, dan theme.
