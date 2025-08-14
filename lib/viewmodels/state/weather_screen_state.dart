@@ -6,20 +6,20 @@ import 'package:weatherapp/viewmodels/provider/weather_screen_provider.dart';
 
 class WeatherScreenState {
   final bool isLoading;
-  final ResponseWrapper<WeatherResponseModel?>? data;
+  final ResponseWrapper<WeatherResponseModel?>? response;
 
   WeatherScreenState({
     required this.isLoading,
-    this.data,
+    this.response,
   });
 
   WeatherScreenState copyWith({
     bool? isLoading,
-    ResponseWrapper<WeatherResponseModel?>? data,
+    ResponseWrapper<WeatherResponseModel?>? response,
   }) {
     return WeatherScreenState(
       isLoading: isLoading ?? this.isLoading,
-      data: data ?? this.data,
+      response: response ?? this.response,
     );
   }
 }
@@ -29,21 +29,21 @@ class WeatherScreenStateNotifier extends StateNotifier<WeatherScreenState> {
 
   WeatherScreenStateNotifier({required this.weatherUseCase}): super(WeatherScreenState(isLoading: false));
 
-  Future<void> getWeatherData(double lat, double lon) async {
+  Future<void> getWeatherData() async {
     // Mulai loading
     state = state.copyWith(isLoading: true);
 
     // Ambil data
-    final response = await weatherUseCase.execute(lat, lon);
+    final response = await weatherUseCase.execute();
 
     // Update state setelah data didapat
     state = state.copyWith(
       isLoading: false,
-      data: response,
+      response: response,
     );
   }
 }
 
-final WeatherScreenStateNotfierProvider = StateNotifierProvider<WeatherScreenStateNotifier, WeatherScreenState>((ref) {
+final weatherScreenStateNotifierProvider = StateNotifierProvider<WeatherScreenStateNotifier, WeatherScreenState>((ref) {
   return WeatherScreenStateNotifier(weatherUseCase: ref.read(weatherUseCaseProvider));
 });

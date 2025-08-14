@@ -7,7 +7,7 @@ import 'package:weatherapp/models/wind_model.dart';
 
 class WeatherResponseModel{
   final CoordinateModel? coordinate;
-  final WeatherModel? weather;
+  final List<WeatherModel?>? weather;
   final String? base;
   final MainModel? main;
   final double? visibility;
@@ -39,7 +39,7 @@ class WeatherResponseModel{
   factory WeatherResponseModel.fromJson(Map<String, dynamic> json){
     return WeatherResponseModel(
       coordinate: json['coord'] != null ? CoordinateModel.fromJson(json['coord']) : null,
-      weather: json['weather'] != null ? WeatherModel.fromJson(json['weather']) : null,
+      weather: json['weather']?.map<WeatherModel>((e) => WeatherModel.fromJson(e as Map<String, dynamic>)).toList(),
       base: json['base']?.toString(),
       main: json['main'] != null ? MainModel.fromJson(json['main']) : null,
       visibility: (json['visibility'] as num?)?.toDouble(),
