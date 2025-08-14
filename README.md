@@ -1,6 +1,7 @@
 # weatherapp
 
-Aplikasi untuk fetch API cuaca.
+Aplikasi untuk fetch API cuaca.<br>
+Hasil Build: [link](https://drive.google.com/file/d/15FvuHorCoaL-fxlQjt2PyIFKtl5kI_rA/view?usp=sharing)
 
 ## Struktur Folder Project
 
